@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { notFound } from "../error/NotFoundError";
 import { User } from "../models/user.model";
 
-const JWT_SECRET = "nklndfgkdfgklndgfnkldfgdfgkln";
+const JWT_SECRET = "your_jwt_secret_key";
 
 export class AuthentificationService {
   public async authenticate(username: string, password: string): Promise<string> {
@@ -46,12 +46,18 @@ export class AuthentificationService {
       case 'gerant':
         return [
           'book:read',
+          'bookCollection:read',
+          'author:read',
           'book:create',
-          'book:delete',
+          'bookCollection:create',
+          'author:create',
+          'bookCollection:delete',
         ];
       case 'utilisateur':
         return [
           'book:read',
+          'author:read',
+          'bookCollection:read',
         ];
       default:
         return [];
